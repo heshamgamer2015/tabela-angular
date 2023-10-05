@@ -1,0 +1,42 @@
+
+<h2>Lista de Livros</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Autor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let livro of livros">
+      <td>{{ livro.titulo }}</td>
+      <td>{{ livro.autor }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="verDetalhes(livro)">Ver Detalhes</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulário para adicionar um novo livro -->
+<h2>Adicionar Novo Livro</h2>
+
+<form [formGroup]="livroForm">
+  <div class="form-group">
+    <label for="tituloLivro">Título do Livro</label>
+    <input type="text" id="tituloLivro" formControlName="titulo" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="autorLivro">Autor do Livro</label>
+    <input type="text" id="autorLivro" formControlName="autor" class="form-control" />
+  </div>
+  <button (click)="adicionarLivro()" class="btn btn-success">Adicionar Livro</button>
+</form>
+
+<!-- Detalhes de um livro selecionado -->
+<div *ngIf="livroSelecionado">
+  <h2>Detalhes do Livro</h2>
+  <p><strong>Título:</strong> {{ livroSelecionado.titulo }}</p>
+  <p><strong>Autor:</strong> {{ livroSelecionado.autor }}</p>
+</div>

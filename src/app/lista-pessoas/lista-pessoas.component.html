@@ -1,0 +1,43 @@
+<!-- pessoas.component.html -->
+
+<h2>Lista de Pessoas</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Idade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pessoa of pessoas">
+      <td>{{ pessoa.nome }}</td>
+      <td>{{ pessoa.idade }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="verDetalhes(pessoa)">Ver Detalhes</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulário para adicionar uma nova pessoa -->
+<h2>Adicionar Nova Pessoa</h2>
+
+<form [formGroup]="pessoaForm">
+  <div class="form-group">
+    <label for="nomePessoa">Nome da Pessoa</label>
+    <input type="text" id="nomePessoa" formControlName="nome" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="idadePessoa">Idade da Pessoa</label>
+    <input type="number" id="idadePessoa" formControlName="idade" class="form-control" />
+  </div>
+  <button (click)="adicionarPessoa()" class="btn btn-success">Adicionar Pessoa</button>
+</form>
+
+<!-- Detalhes de uma pessoa selecionada -->
+<div *ngIf="pessoaSelecionada">
+  <h2>Detalhes da Pessoa</h2>
+  <p><strong>Nome:</strong> {{ pessoaSelecionada.nome }}</p>
+  <p><strong>Idade:</strong> {{ pessoaSelecionada.idade }}</p>
+</div>
